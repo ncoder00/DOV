@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Domain One View</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="title-card">
+            <h1>Domain One View</h1>
+            {% if error %}
+                <div class="error-message">{{ error }}</div>
+            {% endif %}
+            <form id="analyze-form" method="POST">
+                <input type="text" name="user_input" placeholder="Enter URL or IP" class="input-box">
+                <button type="submit" class="analyze-btn">Analyze</button>
+            </form>
+            <div class="expandable-section">
+                <div class="expandable-header">
+                    <h2>Supported Checks</h2>
+                    <button class="toggle-btn" onclick="toggleExpandableSection()">+</button>
+                </div>
+                <div id="expandable-content" class="expandable-content">
+                    <div class="features-container">
+                        <div class="features-column">
+                            <h3>Domain</h3>
+                            <ul>
+                                <li>WHOIS Lookup</li>
+                                <li>DNS Lookup</li>
+                                <li>SSL Certificate</li>
+                                <li>HTTP Headers</li>
+                                <li>Geolocation</li>
+                            </ul>
+                        </div>
+                        <div class="features-column">
+                            <h3>IP</h3>
+                            <ul>
+                                <li>WHOIS Lookup</li>
+                                <li>Geolocation</li>
+                                <li>AbuseIPDB Reports</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="loading" class="loading" style="display: none;"></div>
+        </div>
+        <button id="expand-collapse-all" onclick="toggleAllCards()" style="display: none;">+</button>
+        <div id="results-container" class="result-grid"></div>
+    </div>
+
+    <script>
+        function toggleExpandableSection() {
+            const content = document.getElementById('expandable-content');
+            const button = document.querySelector('.toggle-btn');
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block";
+                button.textContent = "-";
+            } else {
+                content.style.display = "none";
+                button.textContent = "+";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+certifi
+charset-normalizer
+click
+dnspython
+Flask
+idna
+itsdangerous
+Jinja2
+MarkupSafe
+python-dotenv
+requests
+rich
+urllib3
+Werkzeug
+whois
